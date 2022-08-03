@@ -12,6 +12,7 @@ namespace AutoInviterMembersInGroup
         public IList<string> GetListWithIdAndHashMembers(string path)
         {
             var list = new List<string>();
+
             using (StreamReader reader = new StreamReader(path))
             {
                 string? line;
@@ -29,7 +30,7 @@ namespace AutoInviterMembersInGroup
         {
             List<string> thirtyMembers = new List<string>();
 
-            for (int i = 0; i < 30 ; i++)
+            for (int i = 0; i < 20 ; i++)
             {
                 thirtyMembers.Add(list[i]);
                 list.Remove(list[i]);
@@ -38,7 +39,7 @@ namespace AutoInviterMembersInGroup
             {
                 foreach (var member in list)
                 {
-                    writer.WriteLineAsync(member);
+                    writer.WriteLine(member);
                 }
             }
 
@@ -56,7 +57,6 @@ namespace AutoInviterMembersInGroup
 
                 for (int i = 0; i < member.Length; i++)
                 {
-
                     if (member[i] == ':')
                     {
                         for (int a = i+1; a < member.Length; a++)
@@ -65,13 +65,10 @@ namespace AutoInviterMembersInGroup
                         }
                         break;
                     }
-
                     key += member[i];
                 }
-
                 result.Add(Convert.ToInt64(key), Convert.ToInt64(value));
             }
-
             return result;
         }
     }
